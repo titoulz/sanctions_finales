@@ -1,0 +1,12 @@
+{
+    "name": "nguyenp/projet-sanctions",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/cache": "^7.1",
+        "doctrine/orm": "^3.3"
+    }
+}
