@@ -23,7 +23,7 @@ $email = $email ?? '';
     <form action="" method="POST" class="mt-4">
         <div class="mb-3">
             <label for="email" class="form-label">Votre adresse Email</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="email" values="<?= $email ?>">
+            <input type="email" class="form-control" name="email" id="email" placeholder="email" values="<?php echo $email ?>">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Votre Mot de passe</label>

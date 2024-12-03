@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -12,9 +15,14 @@
     <title>Accueil</title>
 </head>
 <body>
-<h1 class="text-center mt-5">site des sanctions du lycée Gaudper</h1>
-<h1 class="text-center mt-5">Ce site a pour but de gérer les sanctions des élèves vraiment pas sages .</h1>
-<p class="text-center mt-5">Veuillez vous connecter pour accéder aux fonctionnalités du site </p>
+<div class="container mt-5">
+    <?php if (isset($_SESSION['user'])): ?>
+        <h1 class="text-center mt-5">Bonjour, <?= htmlspecialchars($_SESSION['user']['prenom']) ?> !</h1>
+
+        <h1 class="text-center mt-5">site des sanctions du lycée Gaudper</h1>
+        <h1 class="text-center mt-5">Ce site a pour but de gérer les sanctions des élèves vraiment pas sages.</h1>
+    <?php endif; ?>
+</div>
 <!--<a href="index.php?route=livre-list">Liste des livres</a> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

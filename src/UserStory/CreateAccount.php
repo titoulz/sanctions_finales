@@ -77,6 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_POST['confirmPassword']
         );
         echo "Utilisateur créé avec succès.";
+        //redirection vers la page de connexion
+        header('Location: /connexion');
     } catch (\Exception $e) {
         echo "Erreur : " . $e->getMessage();
     }

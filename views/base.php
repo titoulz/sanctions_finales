@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img class="me-2" src="/assets/img/Logo-Pronote-menu.png" height="50" width="50"/>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,16 +26,24 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarColor01">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/">Accueil
+                    <a class="nav-link active" href="/">Accueil</a>
+                </li>
 
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/connexion">Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/inscription">Inscription</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Déconnexion</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/promotion">Promotion</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/connexion">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/inscription">Inscription</a>
+                    </li>
+
             </ul>
         </div>
     </div>

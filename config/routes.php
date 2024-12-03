@@ -4,5 +4,6 @@ return [
     '/sanctions' => ['SanctionsController', 'index'],
     '/inscription' => ['SanctionsController', 'inscription'],
     '/connexion' => ['SanctionsController', 'connexion'],
-    '/legal' => ['AccueilController', 'legal']
+    '/legal' => ['AccueilController', 'legal'],
+    '/promotion' => ['PromotionController', 'createPromotion']
 ];
