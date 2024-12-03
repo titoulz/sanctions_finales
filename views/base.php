@@ -1,3 +1,4 @@
+
 <?php
 
 ?>
@@ -42,6 +43,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/inscription">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/etudiant/import">Import</a>
                     </li>
 
             </ul>
