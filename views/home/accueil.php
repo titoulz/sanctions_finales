@@ -15,12 +15,15 @@ session_start();
     <title>Accueil</title>
 </head>
 <body>
+<h1 class="text-center mt-5">site des sanctions du lycée Gaudper</h1>
+<h1 class="text-center mt-5">Ce site a pour but de gérer les sanctions des élèves vraiment pas sages.</h1>
 <div class="container mt-5">
     <?php if (isset($_SESSION['user'])): ?>
         <h1 class="text-center mt-5">Bonjour, <?= htmlspecialchars($_SESSION['user']['prenom']) ?> !</h1>
 
-        <h1 class="text-center mt-5">site des sanctions du lycée Gaudper</h1>
-        <h1 class="text-center mt-5">Ce site a pour but de gérer les sanctions des élèves vraiment pas sages.</h1>
+       
+                <!-- views/templates/base.php -->
+       
     <?php endif; ?>
 </div>
 <!--<a href="index.php?route=livre-list">Liste des livres</a> -->

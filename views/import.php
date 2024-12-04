@@ -29,3 +29,11 @@
     <br>
     <button type="submit">Import</button>
 </form>
+<style>
+    .errors {
+        color: red;
+    }
+    .success {
+        color: green;
+    }
+</style>

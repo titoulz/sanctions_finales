@@ -26,28 +26,30 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarColor01">
             <ul class="navbar-nav">
+            <?php if (isset($_SESSION['user'])): ?>
                 <li class="nav-item">
+                    
                     <a class="nav-link active" href="/">Accueil</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/promotion">Promotion</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Déconnexion</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/promotion">Promotion</a>
-                    </li>
-
-                    <li class="nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" href="/etudiant/import">Import</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/deconnexion">Déconnexion</a>
+                </li>
+                <?php else: ?>
+                <li class="nav-item">
                         <a class="nav-link" href="/connexion">Connexion</a>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="/inscription">Inscription</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/etudiant/import">Import</a>
-                    </li>
-
+                <?php endif; ?>
             </ul>
         </div>
     </div>
