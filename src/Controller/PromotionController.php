@@ -72,16 +72,16 @@ class PromotionController
         $this->render('promotion/create', ['erreurs' => $erreurs]);
     }
 
-    private function render(string $template, array $data = []): void
-    {
-        extract($data);
-        $templatePath = realpath(__DIR__ . "/../../views/$template.php");
-        if ($templatePath && file_exists($templatePath)) {
-            error_log("Loading template: $templatePath");
-            include $templatePath;
-        } else {
-            error_log("Template file not found: $template");
-            throw new \Exception("Template file not found: $templatePath");
-        }
+
+private function render(string $template, array $data = []): void
+{
+    extract($data);
+    ob_start();
+    $templatePath = realpath(__DIR__ . "/../../views/$template.php");
+    if ($templatePath && file_exists($templatePath)) {
+        include $templatePath;
     }
+    $content = ob_get_clean();
+    include realpath(__DIR__ . "/../../views/base.php");
+}
 }
