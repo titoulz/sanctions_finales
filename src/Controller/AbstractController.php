@@ -30,4 +30,14 @@ abstract class AbstractController
             exit;
         }
     }
+    protected function requireAuth(): void
+    {
+        // Implement your authentication check logic here
+        if (!isset($_SESSION['user'])) {
+            // Redirect to login page or throw an exception
+            header('Location: /connexion');
+            exit;
+        }
+    }
+   
 }
