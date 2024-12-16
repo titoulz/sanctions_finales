@@ -133,7 +133,6 @@ public function createSanction(): void {
             if (empty($motif)) $errors[] = "Le motif est requis.";
             if (empty($description)) $errors[] = "La description est requise.";
             if (empty($date_incident)) $errors[] = "La date de l'incident est requise.";
-
             if (empty($errors)) {
                 $date_creation = new \DateTime();
                 $cree_par = $_SESSION['user']['id'];
@@ -175,6 +174,8 @@ public function createSanction(): void {
         'errors' => $errors,
         'promotions' => $promotions ?? [],
         'etudiants' => $etudiants ?? []
+       
     ]);
+   
 }
 }

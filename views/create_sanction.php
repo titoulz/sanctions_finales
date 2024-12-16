@@ -18,42 +18,52 @@
         </ul>
     </div>
 <?php endif; ?>
-<form method="POST" action="/sanction/create">
-    <label for="promotion">Promotion:</label>
-    <select id="promotion" name="promotion" required>
-        <option value="">Sélectionnez une promotion</option>
-        <?php foreach ($promotions as $promotion): ?>
-                <!-- Modifier l'accès aux propriétés de l'objet Promotion -->
-                <option value="<?php echo $promotion->getId(); ?>">
-                    <?php echo htmlspecialchars($promotion->getLibelle()); ?>
-                </option>
-            <?php endforeach; ?>
-    </select><br>
+<form method="POST" action="/sanction/create" class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                <label for="eleve" class="form-label">Élève sanctionné :</label>
+                <select id="eleve" name="eleve" class="form-control" required>
+                    <option value="">Sélectionnez un élève</option>
+                    <?php foreach ($etudiants as $etudiant): ?>
+                        <option value="<?php echo $etudiant->getId(); ?>" 
+                                data-promotion="<?php echo $etudiant->getPromotion()->getId(); ?>">
+                            <?php echo htmlspecialchars($etudiant->getNom() . ' ' . $etudiant->getPrenom()); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
-    <label for="eleve">Élève sanctionné:</label>
-    <select id="eleve" name="eleve" required>
-        <option value="">Sélectionnez un élève</option>
-        <?php foreach ($etudiants as $etudiant): ?>
-            <option value="<?php echo $etudiant->getId(); ?>" 
-                    data-promotion="<?php echo $etudiant->getPromotion()->getId(); ?>">
-                <?php echo htmlspecialchars($etudiant->getNom() . ' ' . $etudiant->getPrenom()); ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br>
+            <div class="form-group mb-3">
+                <label for="professeur" class="form-label">Nom du professeur :</label>
+                <input type="text" id="professeur" name="professeur" class="form-control" required>
+            </div>
 
-    <label for="professeur">Nom du professeur:</label>
-    <input type="text" id="professeur" name="professeur" required><br>
+            <div class="form-group mb-3">
+                <label for="motif" class="form-label">Motif de la sanction :</label>
+                <input type="text" id="motif" name="motif" class="form-control" required>
+            </div>
+        </div>
 
-    <label for="motif">Motif de la sanction:</label>
-    <input type="text" id="motif" name="motif" required><br>
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                <label for="description" class="form-label">Description de la sanction :</label>
+                <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
+            </div>
 
-    <label for="description">Description de la sanction:</label>
-    <textarea id="description" name="description" required></textarea><br>
+            <div class="form-group mb-3">
+                <label for="date_incident" class="form-label">Date de l'incident :</label>
+                <input type="date" id="date_incident" name="date_incident" class="form-control" required>
+            </div>
+        </div>
+    </div>
 
-    <label for="date_incident">Date de l'incident:</label>
-    <input type="date" id="date_incident" name="date_incident" required><br>
-
-    <button type="submit">Créer la sanction</button>
+    <div class="row mt-3">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Créer la sanction</button>
+            <a href="/" class="btn btn-secondary ms-2">Annuler</a>
+        </div>
+    </div>
 </form>
 
 <script>
