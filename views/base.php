@@ -41,6 +41,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/deconnexion">Déconnexion</a>
                 </li>
+                <li>
+                    <a class="nav-link" href="/sanction/create">Créer une sanction</a>
+                </li>
                 <?php else: ?>
                 <li class="nav-item">
                         <a class="nav-link" href="/connexion">Connexion</a>
@@ -50,6 +53,7 @@
                         <a class="nav-link" href="/inscription">Inscription</a>
                     </li>
                 <?php endif; ?>
+            
             </ul>
         </div>
     </div>

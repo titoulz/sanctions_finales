@@ -15,5 +15,8 @@ return [
     // Import des etudiant
     '/etudiant/import' => ['EtudiantController', 'import'],
      // Route pour la déconnexion
-     '/deconnexion' => ['SecurityController', 'deconnexion']
+     '/deconnexion' => ['SecurityController', 'deconnexion'],
+     //Route pour l'ajout d'une sanction
+     '/sanction/create' => ['SanctionsController', 'createSanction']
+
 ];
