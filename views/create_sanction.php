@@ -1,86 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    
-<title>Gestion des Sanctions</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Créer une sanction</title>
 </head>
-<h1>Créer une sanction</h1>
-<?php if (isset($error)): ?>
-    <p style="color: red;"><?php echo $error; ?></p>
-<?php endif; ?>
-<?php if (!empty($errors)): ?>
-    <div class="alert alert-danger">
-        <ul>
+<body>
+<div class="container mt-5">
+    <h1>Créer une sanction</h1>
+
+    <?php if (!empty($errors)): ?>
+        <div class="alert alert-danger">
             <?php foreach ($errors as $error): ?>
-                <li><?php echo htmlspecialchars($error); ?></li>
+                <p><?= htmlspecialchars($error) ?></p>
             <?php endforeach; ?>
-        </ul>
-    </div>
-<?php endif; ?>
-<form method="POST" action="/sanction/create" class="container mt-4">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group mb-3">
-                <label for="eleve" class="form-label">Élève sanctionné :</label>
-                <select id="eleve" name="eleve" class="form-control" required>
-                    <option value="">Sélectionnez un élève</option>
+        </div>
+    <?php endif; ?>
+
+    <form action="" method="POST" class="mt-4" id="sanctionForm">
+        <div class="mb-3">
+            <label for="promotion_id" class="form-label">Sélectionner une promotion</label>
+            <select name="promotion_id" id="promotion_id" class="form-select">
+                <option value="">-- Choisir une promotion --</option>
+                <?php foreach ($promotions as $promotion): ?>
+                    <option value="<?= $promotion->getId() ?>" <?= ($selectedPromotionId == $promotion->getId()) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($promotion->getLibelle()) ?> - <?= htmlspecialchars($promotion->getAnnee()) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <?php if (!empty($etudiants)): ?>
+            <div class="mb-3">
+                <label for="eleve" class="form-label">Élève</label>
+                <select name="eleve" id="eleve" class="form-select">
+                    <option value="">-- Choisir un élève --</option>
                     <?php foreach ($etudiants as $etudiant): ?>
-                        <option value="<?php echo $etudiant->getId(); ?>" 
-                                data-promotion="<?php echo $etudiant->getPromotion()->getId(); ?>">
-                            <?php echo htmlspecialchars($etudiant->getNom() . ' ' . $etudiant->getPrenom()); ?>
+                        <option value="<?= $etudiant->getId() ?>">
+                            <?= htmlspecialchars($etudiant->getNom()) ?> <?= htmlspecialchars($etudiant->getPrenom()) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
             </div>
+        <?php endif; ?>
 
-            <div class="form-group mb-3">
-                <label for="professeur" class="form-label">Nom du professeur :</label>
-                <input type="text" id="professeur" name="professeur" class="form-control" required>
-            </div>
-
-            <div class="form-group mb-3">
-                <label for="motif" class="form-label">Motif de la sanction :</label>
-                <input type="text" id="motif" name="motif" class="form-control" required>
-            </div>
+        <div class="mb-3">
+            <label for="professeur" class="form-label">Professeur</label>
+            <input type="text" class="form-control" name="professeur" id="professeur" required>
         </div>
-
-        <div class="col-md-6">
-            <div class="form-group mb-3">
-                <label for="description" class="form-label">Description de la sanction :</label>
-                <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
-            </div>
-
-            <div class="form-group mb-3">
-                <label for="date_incident" class="form-label">Date de l'incident :</label>
-                <input type="date" id="date_incident" name="date_incident" class="form-control" required>
-            </div>
+        <div class="mb-3">
+            <label for="motif" class="form-label">Motif</label>
+            <input type="text" class="form-control" name="motif" id="motif" required>
         </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Créer la sanction</button>
-            <a href="/" class="btn btn-secondary ms-2">Annuler</a>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="description" id="description" required></textarea>
         </div>
-    </div>
-</form>
-
+        <div class="mb-3">
+            <label for="date_incident" class="form-label">Date de l'incident</label>
+            <input type="date" class="form-control" name="date_incident" id="date_incident" required>
+        </div>
+        <button type="submit" name="submit_sanction" class="btn btn-primary">Créer la sanction</button>
+    </form>
+</div>
 <script>
-document.getElementById('promotion').addEventListener('change', function() {
-    var promotionId = this.value;
-    var eleveSelect = document.getElementById('eleve');
-    var options = eleveSelect.querySelectorAll('option');
-
-    options.forEach(function(option) {
-        if (option.getAttribute('data-promotion') === promotionId || option.value === '') {
-            option.style.display = 'block';
-        } else {
-            option.style.display = 'none';
-        }
+    document.getElementById('promotion_id').addEventListener('change', function() {
+        document.getElementById('sanctionForm').submit();
     });
-
-    eleveSelect.value = ''; // Réinitialiser la sélection de l'élève
-});
 </script>
-<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
